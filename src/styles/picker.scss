@@ -1,0 +1,138 @@
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+.picker-wrapper {
+    @mixin pos-all-screen {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    &,
+    & * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    position: fixed;
+    z-index: -1;
+    user-select: none;
+
+    @include pos-all-screen;
+
+    .picker-bg {
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: 0.6);
+        @include pos-all-screen;
+        opacity: 0;
+        transition: opacity ease 0.3s;
+    }
+
+    .picker-body-picker {
+        $border-radius: 15px;
+        @include pos-all-screen;
+
+        position: absolute;
+        top: auto;
+        height: 50vh;
+        background-color: #fff;
+        transform: translateY(100%);
+        transition: transform ease 0.3s;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        .picker-body-header {
+            height: 55px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: {
+                left: 16px;
+                right: 16px;
+            }
+
+            .picker-btn {
+                font-size: 14px;
+                border: none;
+                outline: none;
+                background-color: #fff;
+                color: #3b72f1;
+                padding: 4px 8px;
+            }
+        }
+
+        .picker-body {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+
+            .picker-column-mask {
+                position: absolute;
+                @include pos-all-screen;
+                z-index: 2;
+                background-image: linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 1),
+                    rgba(255, 255, 255, 0) 44%,
+                    rgba(255, 255, 255, 0) 56%,
+                    rgba(255, 255, 255, 1) 100%
+                );
+            }
+
+            .picker-column-indicator {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 44%;
+                height: 12vw;
+                border: {
+                    top: 1px solid #eee;
+                    bottom: 1px solid #eee;
+                }
+            }
+
+            .picker-column-box {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 44%;
+
+                display: flex;
+
+                .picker-column-list {
+                    transform: translateY(0);
+                    flex: 1;
+
+                    &.repair {
+                        transition: transform ease 0.2s;
+                    }
+
+                    .picker-column-item {
+                        height: 12vw;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+
+    &.picker-active {
+        z-index: 1;
+        .picker-bg {
+            opacity: 1;
+        }
+
+        .picker-body-picker {
+            transform: translateY(0);
+        }
+    }
+}
