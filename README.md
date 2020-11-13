@@ -135,7 +135,7 @@ picker.hidePicker();
                     }
                 ]
                 ```
-                ![Kapture 2020-10-27 at 17.28.33.gif](https://i.loli.net/2020/10/27/rcQbGxpmjEsygDU.gif)
+                ![Kapture 2020-10-27 at 17.28.33.gif](https://i.loli.net/2020/11/13/8o9TA1UiwEmOaKH.gif)
 - isLink (Boolean, default = false)
     + 是否为联动模式，默认为false，传入联动模式data时这里必须设为true
 - columnCount (Integer, default = data.length, isLink && required)
